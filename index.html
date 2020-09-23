@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escape Timer</title>
+    <link href="fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: black;
+            width: 1920px;
+            height: 1080px;
+            color: white;
+            font-family: "Arvo", serif;
+        }
+        
+        #digital {
+            font-size: 80px;
+            color: white;
+        }
+        
+        #digital .spacer {
+            display: inline-block;
+            width: 60px;
+        }
+        
+        #digital .digit {
+            display: inline-block;
+            min-width: 100px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        
+        #msg {
+            margin: 0 auto;
+            font-size: 80px;
+            color: white;
+            display: inline-block;
+            min-width: 100px;
+            text-align: center;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h2>
+            <span id="msg">집가고 싶다</span></h2>
+
+        <h2>
+            <span id="digital">
+        <script>
+            const $digital = document.querySelector("#digital");
+
+            let now = new Date();
+            let escapetime = new Date("2020-09-29 14:00:00");
+            let remaintime = escapetime - now;
+
+            var h = Math.floor((remaintime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var m = Math.floor((remaintime % (1000 * 60 * 60)) / (1000 * 60));
+
+            var d = parseInt(remaintime / 86400000);
+            var mt = parseInt(remaintime / (86400000 * 30));
+            var y = parseInt(remaintime / (86400000 * 30 * 12));
+
+            $digital.innerHTML = `<span class="digit">${
+        h < 10 ? "0" + y : y
+      }년</span><span class="spacer"></span><span class="digit">${
+        mt < 10 ? "0" + mt : mt
+      }월</span><span class="spacer"></span><span class="digit">${
+        d < 10 ? "0" + d : d
+      }일</span><span class="spacer"></span><span class="digit">${
+        h < 10 ? "0" + h : h
+      }시간</span><span class="spacer"></span><span class="digit">${
+        m < 10 ? "0" + m : m
+      }분</span>`;
+            </script>
+            </span>
+        </h2>
+    </div>
+</body>
+
+</html>
