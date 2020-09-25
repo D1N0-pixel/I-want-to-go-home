@@ -22,7 +22,7 @@ cron.schedule("* * * * *", () => {
         output: imgPath,
         html: html.toString("utf-8"),
     }).then(() => {
-        console.log("The image was created successfully!");
+        //console.log("The image was created successfully!");
         //Remove last wallpaper image file if exists
         wallpaper.get().then((oldFile) => {
             if (oldFile.includes("wallpaperclock")) {
@@ -31,14 +31,15 @@ cron.schedule("* * * * *", () => {
                         console.error(err);
                         return;
                     }
-                    console.log("Last image successfully removed");
+                    //console.log("Last image successfully removed");
                 });
             }
         });
 
         // Set wallpaper with new image
         wallpaper.set(imgPath).then((err) => {
-            console.log("Wallpaper set successfully");
+            //console.log("Wallpaper set successfully");
         });
     });
+    console.log("Working...")
 });

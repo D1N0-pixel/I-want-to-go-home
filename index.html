@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Escape Timer</title>
-    <link href="fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/earlyaccess/jejuhallasan.css" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -22,7 +22,7 @@
             width: 1920px;
             height: 1080px;
             color: white;
-            font-family: "Arvo", serif;
+            font-family: 'Jeju Hallasan', cursive;
         }
         
         #digital {
@@ -42,6 +42,14 @@
             border-radius: 10px;
         }
         
+        #detail {
+            font-size: 80px;
+            color: red;
+            display: inline-block;
+            min-width: 100px;
+            border-radius: 10px;
+        }
+        
         #msg {
             margin: 0 auto;
             font-size: 80px;
@@ -55,41 +63,52 @@
 </head>
 
 <body>
-
     <div>
         <h2>
-            <span id="msg">집가고 싶다</span></h2>
-
+            <span id="msg">집가고 싶다</span>
+        </h2>
         <h2>
             <span id="digital">
-        <script>
-            const $digital = document.querySelector("#digital");
+                <script>
+                    const $digital = document.querySelector("#digital");
 
-            let now = new Date();
-            let escapetime = new Date("2020-09-29 14:00:00");
-            let remaintime = escapetime - now;
+                    let now = new Date();
+                    let escapetime = new Date("2020-09-29 14:00:00");
+                    let remaintime = escapetime - now;
 
-            var h = Math.floor((remaintime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var m = Math.floor((remaintime % (1000 * 60 * 60)) / (1000 * 60));
+                    var h = Math.floor((remaintime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var m = Math.floor((remaintime % (1000 * 60 * 60)) / (1000 * 60));
 
-            var d = parseInt(remaintime / 86400000);
-            var mt = parseInt(remaintime / (86400000 * 30));
-            var y = parseInt(remaintime / (86400000 * 30 * 12));
+                    var d = parseInt(remaintime / 86400000);
 
-            $digital.innerHTML = `<span class="digit">${
-        h < 10 ? "0" + y : y
-      }년</span><span class="spacer"></span><span class="digit">${
-        mt < 10 ? "0" + mt : mt
-      }월</span><span class="spacer"></span><span class="digit">${
-        d < 10 ? "0" + d : d
-      }일</span><span class="spacer"></span><span class="digit">${
-        h < 10 ? "0" + h : h
-      }시간</span><span class="spacer"></span><span class="digit">${
-        m < 10 ? "0" + m : m
-      }분</span>`;
+                    $digital.innerHTML = `<span class="digit">${
+                        d < 10 && d >= 0 ? "0" + d : d
+                    }일</span><span class="spacer"></span><span class="digit">${
+                        h < 10 && h >= 0 ? "0" + h : h
+                    }시간</span><span class="spacer"></span><span class="digit">${
+                        m < 10 && m >= 0 ? "0" + m : m
+                    }분</span>`;
             </script>
             </span>
         </h2>
+        <span id="detail">
+            <script>
+                const $detail = document.querySelector("#detail");
+                
+                let hour = Math.floor(remaintime / (1000 * 60 * 60));
+                let minute = Math.floor(remaintime / (1000 * 60));
+
+                let abshour = Math.abs(hour)
+                let absmin = Math.abs(minute)
+
+                $detail.innerHTML = `
+                <h2>
+                    H${hour >= 0 ? "-" : "+"}${abshour}
+                </h2><h2>
+                    M${minute >= 0 ? "-" : "+"}${absmin}
+                </h2>`;
+            </script>
+        </span>
     </div>
 </body>
 
